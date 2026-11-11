@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sonance Synth Designer</title>
+<style>
+  body { font-family: monospace; background: #10141c; color: #eef; margin: 2rem; }
+  .node { display: block; margin: 6px 0; background: #22354f; color: #fff; border: 1px solid #ffffff33; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-family: monospace; }
+  button.action { background: #2a6; border: none; color: #fff; border-radius: 6px; padding: 8px 16px; cursor: pointer; font-family: monospace; margin-right: 6px; }
+  label { display: block; margin: 6px 0; }
+  .hint { color: #9ab; font-size: 12px; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "@codecube/sonance": "/src/index.js",
+    "tone": "/node_modules/tone/build/esm/index.js",
+    "standardized-audio-context": "/node_modules/standardized-audio-context/build/es2019/module.js",
+    "automation-events": "/node_modules/automation-events/build/es2019/module.js",
+    "tslib": "/node_modules/tslib/tslib.es6.mjs"
+  }
+}
+</script>
+</head>
+<body>
+<h1>Sonance Synth Designer</h1>
+<p>Pick a preset, click a node to edit its plain values, then apply and play the scene. Save, load, export, and import all go through SonanceSceneManager.</p>
+<p><label>Preset <select id="preset-select"></select></label></p>
+<div id="node-list"></div>
+<div id="param-panel"></div>
+<p>
+  <button class="action" id="designer-play">▶ Apply &amp; Play</button>
+  <button class="action" id="designer-stop">■ Stop</button>
+  <button class="action" id="designer-audition">Audition sound</button>
+  <span id="designer-state">stopped</span>
+</p>
+<p>
+  <input id="save-name" placeholder="Scene name">
+  <button class="action" id="designer-save">Save</button>
+  <select id="saved-select"></select>
+  <button class="action" id="designer-load-saved">Load saved</button>
+  <button class="action" id="designer-export">Export JSON</button>
+  <button class="action" id="designer-import">Import JSON</button>
+</p>
+<p id="designer-status">Ready</p>
+<script type="module" src="./synth-designer.js"></script>
+</body>
+</html>

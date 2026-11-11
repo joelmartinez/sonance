@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sonance Audio Demo</title>
+<style>
+  body { font-family: monospace; background: #10141c; color: #eef; margin: 2rem; }
+  .tiles { display: flex; gap: 12px; flex-wrap: wrap; }
+  .tile { border-radius: 10px; padding: 22px 26px; cursor: pointer; border: 1px solid #ffffff55; color: #fff; font-family: monospace; font-size: 15px; transition: transform .18s; }
+  .tile.pulse { transform: scale(1.12); }
+  button.action { background: #2a6; border: none; color: #fff; border-radius: 6px; padding: 8px 20px; cursor: pointer; font-family: monospace; }
+  button.stop { background: #622; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "@codecube/sonance": "/src/index.js",
+    "tone": "/node_modules/tone/build/esm/index.js",
+    "standardized-audio-context": "/node_modules/standardized-audio-context/build/es2019/module.js",
+    "automation-events": "/node_modules/automation-events/build/es2019/module.js",
+    "tslib": "/node_modules/tslib/tslib.es6.mjs"
+  }
+}
+</script>
+</head>
+<body>
+<h1>Sonance Audio Demo</h1>
+<p>Click a tile to trigger a sound. Play the ambient track, then toggle the modulators or move the distance slider to hear the filters and space open up.</p>
+<div class="tiles">
+  <button class="tile" data-sound="kick" style="background:#ff444455">kick (C1)</button>
+  <button class="tile" data-sound="snare" style="background:#44ff4455">snare (layered)</button>
+  <button class="tile" data-sound="hihat" style="background:#4444ff55">hat (metal+air)</button>
+  <button class="tile" data-sound="piano" style="background:#ffaa0055">piano-ish (G4)</button>
+</div>
+<p>
+  <button class="action" id="sonance-play">▶ Play Ambient Track</button>
+  <button class="action stop" id="sonance-stop">■ Stop</button>
+  <label><input type="checkbox" id="sonance-modulators-enabled" checked> Enable modulators</label>
+  <label>Distance <input type="range" id="sonance-distance" min="0" max="100" value="50"></label>
+</p>
+<p id="mod-readouts">modulators: —</p>
+<p id="sonance-status">Audio context: not started</p>
+<script type="module" src="./audio-demo.js"></script>
+</body>
+</html>

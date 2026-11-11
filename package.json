@@ -1,0 +1,59 @@
+{
+  "author": "Joel Martinez",
+  "bugs": {
+    "url": "https://github.com/joelmartinez/sonance/issues"
+  },
+  "dependencies": {
+    "tone": "^15.1.22"
+  },
+  "description": "Sonance \u2014 web audio and synth engine built on Tone.js: entity sounds and DAW-style multi-channel soundtracks. Extracted from codecube.net. MIT licensed. npm publishing happens only on the owner's word.",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js",
+      "import": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/joelmartinez/sonance#readme",
+  "keywords": [
+    "audio",
+    "synth",
+    "tonejs",
+    "web-audio",
+    "soundtrack",
+    "midi"
+  ],
+  "license": "MIT",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "name": "@codecube/sonance",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelmartinez/sonance.git"
+  },
+  "scripts": {
+    "pack:dry-run": "npm pack --dry-run",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
+  },
+  "type": "module",
+  "version": "0.1.0",
+  "devDependencies": {
+    "jest": "^30.0.5"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/jest-globals.js"
+    ]
+  }
+}

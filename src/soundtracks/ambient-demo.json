@@ -1,0 +1,198 @@
+{
+  "name": "ambient-demo",
+  "description": "Ambient track from the Sonance + Photonic modulation demo. Sawtooth bass, piano-ish keys, sawtooth pad chords, layered snare, and metallic hats.",
+  "bpm": 100,
+  "channels": {
+    "bass": {
+      "instrument": {
+        "oscillator": "sawtooth",
+        "envelope": { "attack": 0.01, "decay": 0.16, "sustain": 0.72, "release": 0.38 }
+      },
+      "effects": [
+        { "id": "bassFilter", "type": "filter", "filterType": "lowpass", "frequency": 16000, "Q": 4.5, "rolloff": -24 },
+        { "type": "echo", "delayTime": "8n", "feedback": 0.2, "wet": 0.25 }
+      ],
+      "volume": -5,
+      "sequence": [
+        { "note": "C2", "duration": "4n" }, { "note": "C2", "duration": "4n" },
+        { "note": "G2", "duration": "4n" }, { "note": "F2", "duration": "4n" },
+        { "note": "C2", "duration": "4n" }, { "note": "C2", "duration": "4n" },
+        { "note": "Ab2", "duration": "4n" }, { "note": "G2", "duration": "4n" }
+      ],
+      "loop": true
+    },
+    "keys": {
+      "instrument": {
+        "variation": { "detune": 3, "velocity": 0.05 },
+        "effects": [
+          { "type": "filter", "filterType": "lowpass", "frequency": 3600, "rolloff": -24 },
+          { "type": "reverb", "decay": 2.2, "wet": 0.18 }
+        ],
+        "layers": [
+          {
+            "id": "core",
+            "type": "synth",
+            "polyphonic": false,
+            "oscillator": "triangle",
+            "envelope": { "attack": 0.002, "decay": 1.1, "sustain": 0, "release": 0.35 },
+            "volume": -8
+          },
+          {
+            "id": "shimmer",
+            "type": "synth",
+            "polyphonic": false,
+            "oscillator": "sine",
+            "transpose": 12,
+            "envelope": { "attack": 0.001, "decay": 0.55, "sustain": 0, "release": 0.22 },
+            "volume": -18
+          },
+          {
+            "id": "hammer",
+            "type": "noise",
+            "envelope": { "attack": 0.001, "decay": 0.025, "sustain": 0, "release": 0.01 },
+            "volume": -24,
+            "effects": [
+              { "id": "hammerFilter", "type": "filter", "filterType": "bandpass", "frequency": 2600, "Q": 2, "rolloff": -24 }
+            ],
+            "variation": { "params": { "hammerFilter.frequency": 0.08 } }
+          }
+        ]
+      },
+      "volume": -18,
+      "sequence": [
+        { "note": "E4", "duration": "8n", "velocity": 0.82 }, { "note": "G4", "duration": "8n", "velocity": 0.72 },
+        { "note": "A4", "duration": "4n", "velocity": 0.9 }, { "note": "G4", "duration": "8n", "velocity": 0.75 },
+        { "note": "E4", "duration": "8n", "velocity": 0.78 }, { "note": "C4", "duration": "4n", "velocity": 0.88 },
+        { "note": "D4", "duration": "8n", "velocity": 0.74 }, { "note": "E4", "duration": "4n", "velocity": 0.9 }
+      ],
+      "loop": true
+    },
+    "pad": {
+      "instrument": {
+        "oscillator": "sawtooth",
+        "envelope": { "attack": 0.3, "decay": 0.5, "sustain": 0.7, "release": 1.5 },
+        "maxPolyphony": 4
+      },
+      "effects": [
+        { "id": "padFilter", "type": "filter", "filterType": "lowpass", "frequency": 12000, "Q": 3.2, "rolloff": -24 },
+        { "type": "chorus", "depth": 0.5, "wet": 0.4 },
+        { "id": "padSpace", "type": "reverb", "decay": 6.5, "wet": 0.05 }
+      ],
+      "volume": -20,
+      "sequence": [
+        { "note": ["C3", "E3", "G3"], "duration": "2n" },
+        { "note": ["F3", "A3", "C4"], "duration": "2n" },
+        { "note": ["G3", "B3", "D4"], "duration": "2n" },
+        { "note": ["C3", "E3", "G3"], "duration": "2n" }
+      ],
+      "loop": true
+    },
+    "snare": {
+      "instrument": {
+        "variation": { "velocity": 0.08 },
+        "effects": [
+          { "type": "compressor", "threshold": -20, "ratio": 3, "attack": 0.003, "release": 0.12 }
+        ],
+        "layers": [
+          {
+            "id": "body",
+            "type": "synth",
+            "polyphonic": false,
+            "note": "185Hz",
+            "oscillator": "triangle",
+            "envelope": { "attack": 0.001, "decay": 0.085, "sustain": 0, "release": 0.02 },
+            "pitchEnvelope": {
+              "attack": 0.001, "decay": 0.045, "sustain": 0, "release": 0.01,
+              "baseFrequency": 175, "octaves": 1.4
+            },
+            "volume": -7,
+            "variation": { "detune": 10, "params": { "pitchEnvelope.baseFrequency": 0.05, "source.envelope.decay": 0.12 } }
+          },
+          {
+            "id": "sizzle",
+            "type": "noise",
+            "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.02 },
+            "volume": -8,
+            "effects": [
+              { "id": "noiseFilter", "type": "filter", "filterType": "highpass", "frequency": 1800, "rolloff": -24 },
+              { "type": "distortion", "distortion": 0.08, "wet": 1 }
+            ],
+            "variation": { "params": { "noiseFilter.frequency": 0.08, "source.envelope.decay": 0.12 } }
+          },
+          {
+            "id": "click",
+            "type": "noise",
+            "envelope": { "attack": 0.001, "decay": 0.022, "sustain": 0, "release": 0.01 },
+            "volume": -19,
+            "effects": [
+              { "id": "clickBand", "type": "filter", "filterType": "bandpass", "frequency": 4200, "Q": 4, "rolloff": -24 }
+            ],
+            "variation": { "params": { "clickBand.frequency": 0.05 } }
+          }
+        ]
+      },
+      "volume": -10,
+      "sequence": [
+        { "note": null, "duration": "8n", "rest": true },
+        { "note": "C4", "duration": "8n", "velocity": 0.95 },
+        { "note": null, "duration": "8n", "rest": true },
+        { "note": null, "duration": "8n", "rest": true },
+        { "note": null, "duration": "8n", "rest": true },
+        { "note": "C4", "duration": "8n", "velocity": 0.85 },
+        { "note": null, "duration": "8n", "rest": true },
+        { "note": null, "duration": "8n", "rest": true }
+      ],
+      "loop": true
+    },
+    "hat": {
+      "instrument": {
+        "variation": { "velocity": 0.08 },
+        "layers": [
+          {
+            "id": "metal",
+            "type": "metal",
+            "frequency": 260, "harmonicity": 5.1, "modulationIndex": 30,
+            "resonance": 4600, "octaves": 1.5,
+            "envelope": { "attack": 0.001, "decay": 0.08, "release": 0.02 },
+            "volume": -11,
+            "effects": [
+              { "id": "hatFilter", "type": "filter", "filterType": "highpass", "frequency": 14000, "rolloff": -24 },
+              { "type": "distortion", "distortion": 0.03, "wet": 0.4 }
+            ],
+            "variation": { "params": { "source.frequency": 0.04, "source.envelope.decay": 0.18, "hatFilter.frequency": 0.05 } }
+          },
+          {
+            "id": "air",
+            "type": "noise",
+            "envelope": { "attack": 0.001, "decay": 0.03, "sustain": 0, "release": 0.01 },
+            "volume": -17,
+            "effects": [
+              { "id": "airFilter", "type": "filter", "filterType": "highpass", "frequency": 9200, "rolloff": -24 }
+            ],
+            "variation": { "params": { "source.envelope.decay": 0.2, "airFilter.frequency": 0.04 } }
+          }
+        ]
+      },
+      "volume": -16,
+      "sequence": [
+        { "note": "C5", "duration": "16n", "velocity": 0.62 },
+        { "note": "C5", "duration": "16n", "velocity": 0.42 },
+        { "note": "C5", "duration": "16n", "velocity": 0.58 },
+        { "note": "C5", "duration": "16n", "velocity": 0.44 },
+        { "note": "C5", "duration": "16n", "velocity": 0.66 },
+        { "note": "C5", "duration": "16n", "velocity": 0.4 },
+        { "note": "C5", "duration": "16n", "velocity": 0.56 },
+        { "note": "C5", "duration": "16n", "velocity": 0.45 },
+        { "note": "C5", "duration": "16n", "velocity": 0.6 },
+        { "note": "C5", "duration": "16n", "velocity": 0.43 },
+        { "note": "C5", "duration": "16n", "velocity": 0.55 },
+        { "note": "C5", "duration": "16n", "velocity": 0.41 },
+        { "note": "C5", "duration": "16n", "velocity": 0.64 },
+        { "note": "C5", "duration": "16n", "velocity": 0.42 },
+        { "note": "C5", "duration": "16n", "velocity": 0.57 },
+        { "note": "C5", "duration": "16n", "velocity": 0.45 }
+      ],
+      "loop": true
+    }
+  }
+}

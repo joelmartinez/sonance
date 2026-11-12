@@ -4,7 +4,9 @@ All notable changes to Sonance are recorded in this file. The format follows Kee
 
 ## [Unreleased]
 
-Nothing yet. New work that will ship goes here as it lands.
+### Added
+
+- The modulation dependency is declared (roadmap M1): `@codecube/modulator` at ^0.1.0 is an optional peer dependency, so a consumer who wants modulation has a declared, versioned path — today, installing from a checkout of its GitHub repo as the README's Modulation section describes — and a consumer who does not is never forced to install it. Sonance itself still imports nothing for modulation; the system is injected through the engine options exactly as before, and a real `ModulationSystem` from that package satisfies the contract with no adapter.
 
 ## [0.1.0] — not yet published (prepared 2026-11-11)
 

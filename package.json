@@ -41,6 +41,14 @@
     "type": "git",
     "url": "git+https://github.com/joelmartinez/sonance.git"
   },
+  "peerDependencies": {
+    "@codecube/modulator": "^0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@codecube/modulator": {
+      "optional": true
+    }
+  },
   "scripts": {
     "pack:dry-run": "npm pack --dry-run",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"

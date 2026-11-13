@@ -1,0 +1,23 @@
+---
+# Site configuration file for Sonance library docs
+
+# site basics
+title: Sonance Library Documentation
+email: joel@joelmartinez.dev
+description: >-
+  Documentation for Sonance - a web audio and synth engine built on Tone.js, with entity sounds and DAW-style multi-channel soundtracks.
+
+# base URL for sitemap generation
+baseUrl: https://joelmartinez.github.io/sonance/
+
+# cache busting configuration
+cacheBusting:
+  enabled: true
+
+# razor templates
+templates_folder: templates
+
+# main site folder
+areas:
+  - source_folder: /source
+    output_folder: /
